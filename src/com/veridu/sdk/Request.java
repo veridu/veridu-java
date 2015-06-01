@@ -12,12 +12,12 @@ import org.json.simple.parser.JSONParser;
 
 public class Request {
     private String clientId;
-    private String version = "0.1";
+    private String version = "0.3";
     private Signature signature;
     private String sessionToken = null;
     private int lastCode = 0;
     private String lastError = null;
-    private static String sdkVersion = "0.1.1-beta";
+    private static String sdkVersion = "0.1.2-beta";
 
     private String performRequest(String method, String url, String data) {
         HttpURLConnection connection = null;
@@ -59,8 +59,8 @@ public class Request {
             InputStream is = connection.getInputStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
             String line;
-            StringBuffer response = new StringBuffer(); 
-            while((line = rd.readLine()) != null) {
+            StringBuffer response = new StringBuffer();
+            while ((line = rd.readLine()) != null) {
                 response.append(line);
                 response.append('\r');
             }
@@ -71,11 +71,11 @@ public class Request {
             return null;
         } finally {
             if (connection != null) {
-                connection.disconnect(); 
+                connection.disconnect();
             }
         }
     }
-    
+
     private String generateNonce() {
         try {
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
@@ -86,12 +86,12 @@ public class Request {
             return null;
         }
     }
-    
+
     public Request(String clientId, String secret) {
         this.clientId = clientId;
         this.signature = new Signature(clientId, secret);
     }
-    
+
     public JSONObject fetchSignedResource(String method, String resource) {
         try {
             String nonce = generateNonce();
@@ -113,7 +113,7 @@ public class Request {
             return null;
         }
     }
-    
+
     public JSONObject fetchResource(String method, String resource, String data) {
         try {
             String url = "https://api.veridu.com/" + this.version;
@@ -134,21 +134,22 @@ public class Request {
             return null;
         }
     }
-    
+
     public void setSessionToken(String token) {
         this.sessionToken = token;
     }
-    
+
     public void setVersion(String version) {
+        signature.setVersion(version);
         this.version = version;
     }
- 
+
     public int lastCode() {
         return this.lastCode;
     }
-    
+
     public String lastError() {
         return this.lastError;
     }
-    
+
 }

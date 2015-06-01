@@ -10,17 +10,17 @@ import java.util.logging.Logger;
 public class Signature {
     private String clientid;
     private String secret;
-    private String version = "0.1";
-    
+    private String version = "0.3";
+
     public Signature(String clientid, String secret) {
         this.clientid = clientid;
         this.secret = secret;
     }
-    
+
     public void setVersion(String version) {
         this.version = version;
     }
-    
+
     public String signRequest(String method, String resource, String nonce) throws SignatureException {
         try {
             String url = "https://api.veridu.com/" + this.version + resource;
@@ -37,5 +37,5 @@ public class Signature {
             return null;
         }
     }
-    
+
 }
