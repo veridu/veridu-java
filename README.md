@@ -32,7 +32,3 @@ Tests
 -----
 To run the tests, from the terminal in the root directory, please run: ```mvn test```
 
-Copyright and license
----------------------
-
-
