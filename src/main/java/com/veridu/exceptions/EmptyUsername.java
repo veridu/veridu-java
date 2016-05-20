@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class EmptyUsername
  */
-public class EmptyUsername extends Exception {
+public class EmptyUsername extends SDKException {
 
     public EmptyUsername() {
         super("Empty Username");
@@ -11,7 +11,7 @@ public class EmptyUsername extends Exception {
 
     /**
      * Throws EmptyUsername Exception with message
-     * 
+     *
      * @param msg
      *            String
      */

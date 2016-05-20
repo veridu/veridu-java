@@ -3,11 +3,11 @@ package com.veridu.exceptions;
 /**
  * Class UnavailableRegion
  */
-public class UnavailableRegion extends Exception{
+public class UnavailableRegion extends SDKException{
    	public UnavailableRegion() {
         super("Unavailable Region");
     }
-    
+
     /**
      * Throws UnavailableRegion Exception with message
      *

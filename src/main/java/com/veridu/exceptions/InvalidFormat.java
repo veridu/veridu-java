@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class InvalidFormat
  */
-public class InvalidFormat extends Exception {
+public class InvalidFormat extends SDKException {
 
     public InvalidFormat() {
         super("Invalid Response Format");

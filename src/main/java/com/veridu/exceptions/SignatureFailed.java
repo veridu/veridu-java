@@ -1,9 +1,9 @@
 package com.veridu.exceptions;
 
 /**
- * Class SignatureFailed 
+ * Class SignatureFailed
  */
-public class SignatureFailed extends Exception {
+public class SignatureFailed extends SDKException {
 
     public SignatureFailed() {
         super("Signature Failed");

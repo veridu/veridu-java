@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class APIError
  */
-public class APIError extends Exception {
+public class APIError extends SDKException {
 
     public APIError() {
         super("API Error");

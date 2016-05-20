@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class Empty Response
  */
-public class EmptyResponse extends Exception {
+public class EmptyResponse extends SDKException {
 
     public EmptyResponse() {
         super("Empty Response");
@@ -11,7 +11,7 @@ public class EmptyResponse extends Exception {
 
     /**
      * Throws EmptyResponse Exception with message
-     * 
+     *
      * @param msg
      *            String
      */

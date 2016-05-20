@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class InvalidCertificate
  */
-public class InvalidCertificate extends Exception {
+public class InvalidCertificate extends SDKException {
 
     public InvalidCertificate() {
         super("Invalid Certificate");
@@ -11,7 +11,7 @@ public class InvalidCertificate extends Exception {
 
     /**
      * Throws InvalidCertificate Exception with message
-     * 
+     *
      * @param msg
      *            String
      */

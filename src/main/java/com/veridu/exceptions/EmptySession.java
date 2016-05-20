@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class EmptySession
  */
-public class EmptySession extends Exception {
+public class EmptySession extends SDKException {
 
     public EmptySession() {
         super("Empty Session");
@@ -11,7 +11,7 @@ public class EmptySession extends Exception {
 
     /**
      * Throws EmptySession Exception with message
-     * 
+     *
      * @param msg
      *            String
      */

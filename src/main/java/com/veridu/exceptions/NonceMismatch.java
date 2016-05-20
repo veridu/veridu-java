@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class NonceMismnatch
  */
-public class NonceMismatch extends Exception {
+public class NonceMismatch extends SDKException {
 
     public NonceMismatch() {
         super("Nonce Mismatch");

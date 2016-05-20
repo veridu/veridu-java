@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class InvalidUsername
  */
-public class InvalidUsername extends Exception {
+public class InvalidUsername extends SDKException {
 
     public InvalidUsername() {
         super("Invalid Username given");

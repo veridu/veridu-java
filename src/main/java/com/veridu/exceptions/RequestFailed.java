@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class RequestFailed
  */
-public class RequestFailed extends Exception {
+public class RequestFailed extends SDKException {
 
     public RequestFailed() {
         super("Request Failed");

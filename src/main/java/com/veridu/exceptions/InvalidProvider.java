@@ -3,7 +3,7 @@ package com.veridu.exceptions;
 /**
  * Class InvalidProvider
  */
-public class InvalidProvider extends Exception {
+public class InvalidProvider extends SDKException {
     public InvalidProvider() {
         super("Invalid Response Provider");
     }
