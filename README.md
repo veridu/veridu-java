@@ -20,7 +20,9 @@ On your `pom.xml` file, add :
 
 Code documentation
 ------------------
-Latest code documentation can be found at [http://veridu.github.io/veridu-java](http://veridu.github.io/veridu-java).
+In the root directory run ```mvn site```.
+A ```index.html``` file is going to be generated inside the directory: /target/site. Open it on any web browser. 
+
 
 Examples
 --------
@@ -33,4 +35,4 @@ To run the tests, from the terminal in the root directory, please run: ```mvn te
 Copyright and license
 ---------------------
 
-Copyright (c) 2013/2014 - Veridu Ltd - [http://veridu.com](veridu.com)
+
