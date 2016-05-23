@@ -68,9 +68,7 @@ public class Signature {
      * @param resource
      *            Resource String
      * @param nonce
-     *            Nonce Hex
-     *
-     * @return the request with signature
+     *            Nonce Hex * @return the request with signature
      *
      * @throws SignatureException
      *             Exception
