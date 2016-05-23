@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -55,13 +56,14 @@ public class Application extends AbstractEndpoint {
      *             Exception
      * @throws java.io.UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Application_Resource#How_to_create_a_new_hosted_application">
      *      Create new hosted application </a>
      */
     public int create(String provider) throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -99,13 +101,14 @@ public class Application extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Application_Resource#How_to_get_a_detailed_information_about_a_hosted_application">
      *      How to get a detailed information about a hosted application </a>
      */
     public JSONObject details(int id) throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed {
+            InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -135,13 +138,14 @@ public class Application extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Application_Resource#How_to_retrieve_a_list_of_all_hosted_applications">
      *      How to retrieve a list of all hosted applications </a>
      */
     public JSONArray listAll() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed {
+            InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -178,13 +182,14 @@ public class Application extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Application_Resource#How_to_enable.2Fdisabled_a_hosted_application">
      *      How to enable/disable a host application</a>
      */
     public boolean setState(int id, boolean enabled) throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

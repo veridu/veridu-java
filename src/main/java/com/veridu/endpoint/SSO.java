@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -56,6 +57,7 @@ public class SSO extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/SSO_Resource#How_to_do_a_social_single_sign_on">
@@ -63,7 +65,7 @@ public class SSO extends AbstractEndpoint {
      */
     public JSONObject createOauth1(String provider, HashMap<String, String> data)
             throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, UnsupportedEncodingException {
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -101,6 +103,7 @@ public class SSO extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/SSO_Resource#How_to_do_a_social_single_sign_on">
@@ -108,7 +111,7 @@ public class SSO extends AbstractEndpoint {
      */
     public JSONObject createOauth2(String provider, HashMap<String, String> data)
             throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, UnsupportedEncodingException {
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

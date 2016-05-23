@@ -1,6 +1,7 @@
 package com.veridu.endpoint;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -102,13 +103,15 @@ public class Check extends AbstractEndpoint {
      *             Exception
      * @throws EmptyUsername
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_create_a_new_Background_Check">
      *      Create a new background check</a>
      */
-    public String create(String provider, int map) throws EmptyUsername, EmptySession, InvalidUsername, InvalidProvider,
-            SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed {
+    public String create(String provider, int map)
+            throws EmptyUsername, EmptySession, InvalidUsername, InvalidProvider, SignatureFailed, NonceMismatch,
+            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -148,6 +151,7 @@ public class Check extends AbstractEndpoint {
      *             Exception0
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_create_a_new_Background_Check">
@@ -155,7 +159,7 @@ public class Check extends AbstractEndpoint {
      */
     public String create(String provider, int map, String username)
             throws EmptySession, InvalidUsername, InvalidProvider, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -208,13 +212,15 @@ public class Check extends AbstractEndpoint {
      *             Exception
      * @throws EmptyUsername
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_one_provider">
      *      Retrieve data from one provider</a>
      */
-    public JSONObject details(String provider, int map) throws EmptyUsername, EmptySession, SignatureFailed,
-            NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, InvalidUsername {
+    public JSONObject details(String provider, int map)
+            throws EmptyUsername, EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
+            InvalidResponse, APIError, RequestFailed, InvalidUsername, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -252,13 +258,15 @@ public class Check extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_one_provider">
      *      Retrieve data from one provider</a>
      */
-    public JSONObject details(String provider, int map, String username) throws EmptySession, SignatureFailed,
-            NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, InvalidUsername {
+    public JSONObject details(String provider, int map, String username)
+            throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, InvalidUsername, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
         if (!AbstractEndpoint.validateUsername(username))
@@ -304,6 +312,7 @@ public class Check extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_one_provider">
@@ -311,7 +320,7 @@ public class Check extends AbstractEndpoint {
      */
     public JSONObject details(String provider, int map, String username, String filter)
             throws EmptySession, InvalidUsername, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed {
+            InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -350,13 +359,14 @@ public class Check extends AbstractEndpoint {
      *             Exception
      * @throws EmptyUsername
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_all_providers">
      *      Retrieve data from all providers</a>
      */
     public JSONObject listAll() throws EmptySession, EmptyUsername, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, InvalidUsername {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, InvalidUsername, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -389,13 +399,14 @@ public class Check extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_all_providers">
      *      Retrieve data from all providers</a>
      */
     public JSONObject listAll(String username) throws EmptySession, InvalidUsername, SignatureFailed, NonceMismatch,
-            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

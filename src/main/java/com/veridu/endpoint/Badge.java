@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -88,6 +89,7 @@ public class Badge extends AbstractEndpoint {
      *             Exception
      * @throws EmptyUsername
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Badge_Resource#How_to_assign_a_badge_to_a_given_user">
@@ -95,7 +97,7 @@ public class Badge extends AbstractEndpoint {
      */
     public boolean create(String badge, HashMap<String, String> data)
             throws EmptyUsername, EmptySession, InvalidUsername, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -134,6 +136,7 @@ public class Badge extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Badge_Resource#How_to_assign_a_badge_to_a_given_user">
@@ -141,7 +144,7 @@ public class Badge extends AbstractEndpoint {
      */
     public boolean create(String badge, HashMap<String, String> data, String username)
             throws EmptySession, InvalidUsername, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

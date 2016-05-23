@@ -1,6 +1,7 @@
 package com.veridu.endpoint;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -48,13 +49,14 @@ public class Session extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Session_Resource#How_to_create_a_limited_lifetime_session_token">
      *      How to create a limited lifetime session token</a>
      */
     public boolean create(boolean readonly) throws SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed {
+            InvalidResponse, APIError, RequestFailed, ParseException {
         JSONObject json;
         if (readonly)
             json = this.signedFetch("POST", "session/read");
@@ -87,13 +89,14 @@ public class Session extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Session_Resource#How_to_delete_the_given_session_token_before_it_expires">
      *      How to delete the given session token before it expires"</a>
      */
     public boolean expire() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed {
+            InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -124,13 +127,14 @@ public class Session extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Session_Resource#How_to_extend_the_lifetime_of_a_session">
      *      How to extend the lifetime of a session</a>
      */
     public boolean extend() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed {
+            InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

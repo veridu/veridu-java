@@ -398,9 +398,10 @@ public class AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      */
     public JSONObject signedFetch(String method, String resource) throws SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         return signedFetch(method, resource, "");
     }
 
@@ -431,10 +432,11 @@ public class AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      */
     public JSONObject signedFetch(String method, String resource, HashMap<String, String> data)
             throws SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse, APIError,
-            RequestFailed, UnsupportedEncodingException {
+            RequestFailed, UnsupportedEncodingException, ParseException {
         String dataAsString = queryBuilder(data);
         return signedFetch(method, resource, dataAsString);
     }
@@ -465,10 +467,11 @@ public class AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      */
     public JSONObject signedFetch(String method, String resource, String data) throws SignatureFailed, NonceMismatch,
-            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         String nonce = generateNonce();
         String sign;
         JSONObject response;

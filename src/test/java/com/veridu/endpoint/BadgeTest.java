@@ -19,7 +19,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Badge;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -51,6 +50,48 @@ public class BadgeTest {
         badge.storage.setSessionToken("token");
         badge.storage.setUsername("username");
         return badge;
+    }
+
+    @Test
+    public void testCreateReturnsBoolean()
+            throws ParseException, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, EmptySession, EmptyUsername, InvalidUsername, UnsupportedEncodingException {
+        Badge badge = setUp();
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse("{\"status\":\"true\"}");
+        expect(badge.signedFetch(isA(String.class), isA(String.class), isA(String.class))).andReturn(json);
+        replay(badge);
+        assertTrue(badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>()));
+
+    }
+
+    @Test(expected = EmptySession.class)
+    public void testCreateThrowsEmptySession()
+            throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
+            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException, ParseException {
+        Badge badge = setUp();
+        replay(badge);
+        badge.storage.purgeSession();
+        badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>());
+    }
+
+    @Test(expected = EmptyUsername.class)
+    public void testCreateThrowsEmptyUsername()
+            throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
+            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException, ParseException {
+        Badge badge = setUp();
+        replay(badge);
+        badge.storage.setUsername("");
+        badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>());
+    }
+
+    @Test(expected = InvalidUsername.class)
+    public void testCreateThrowsInvalidUsername()
+            throws EmptySession, InvalidUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError,
+            RequestFailed, SignatureFailed, NonceMismatch, UnsupportedEncodingException, ParseException {
+        Badge badge = setUp();
+        replay(badge);
+        badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>(), "@123#");
     }
 
     @Test
@@ -126,46 +167,5 @@ public class BadgeTest {
         Badge badge = setUp();
         replay(badge);
         badge.retrieve(Badge.BADGE_CREDITCARD, Badge.TYPE_STATE, "@123#");
-    }
-
-    @Test
-    public void testCreateReturnsBoolean()
-            throws ParseException, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, EmptySession, EmptyUsername, InvalidUsername, UnsupportedEncodingException {
-        Badge badge = setUp();
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse("{\"status\":\"true\"}");
-        expect(badge.signedFetch(isA(String.class), isA(String.class), isA(String.class))).andReturn(json);
-        replay(badge);
-        assertTrue(badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>()));
-
-    }
-
-    @Test(expected = EmptySession.class)
-    public void testCreateThrowsEmptySession()
-            throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
-            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException {
-        Badge badge = setUp();
-        replay(badge);
-        badge.storage.purgeSession();
-        badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>());
-    }
-
-    @Test(expected = EmptyUsername.class)
-    public void testCreateThrowsEmptyUsername()
-            throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
-            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException {
-        Badge badge = setUp();
-        replay(badge);
-        badge.storage.setUsername("");
-        badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>());
-    }
-
-    @Test(expected = InvalidUsername.class)
-    public void testCreateThrowsInvalidUsername() throws EmptySession, InvalidUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, UnsupportedEncodingException {
-        Badge badge = setUp();
-        replay(badge);
-        badge.create(Badge.BADGE_TELECOM, new HashMap<String, String>(), "@123#");
     }
 }

@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Hook;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -63,7 +62,7 @@ public class HookTest {
 
     @Test(expected = EmptySession.class)
     public void testCreateThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         Hook hook = setUp();
         replay(hook);
         hook.storage.purgeSession();
@@ -84,7 +83,7 @@ public class HookTest {
 
     @Test(expected = EmptySession.class)
     public void testDetailsThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         Hook hook = setUp();
         replay(hook);
         hook.storage.purgeSession();
@@ -106,7 +105,7 @@ public class HookTest {
 
     @Test(expected = EmptySession.class)
     public void testListThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         Hook hook = setUp();
         replay(hook);
         hook.storage.purgeSession();

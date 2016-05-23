@@ -1,6 +1,7 @@
 package com.veridu.endpoint;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -52,13 +53,14 @@ public class Clone extends AbstractEndpoint {
      *             Exception
      * @throws EmptyUsername
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Clone_Resource#How_to_retrieve_details_about_users_clones">
      *      How to retrieve details about user's clones</a>
      */
     public JSONObject details() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, SignatureFailed, NonceMismatch, InvalidUsername {
+            APIError, RequestFailed, SignatureFailed, NonceMismatch, InvalidUsername, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -91,13 +93,14 @@ public class Clone extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Clone_Resource#How_to_retrieve_details_about_users_clones">
      *      How to retrieve details about user's clones</a>
      */
     public JSONObject details(String username) throws EmptySession, InvalidUsername, SignatureFailed, NonceMismatch,
-            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

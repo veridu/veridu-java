@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -60,6 +61,7 @@ public class Password extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Password_Resource#How_to_create_a_new_user_using_SSO">
@@ -67,7 +69,7 @@ public class Password extends AbstractEndpoint {
      */
     public JSONObject create(String firstname, String lastname, String email, String password)
             throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, UnsupportedEncodingException {
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -110,13 +112,15 @@ public class Password extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Password_Resource#How_to_login_a_user_using_SSO">
      *      How to login a user using SSO</a>
      */
-    public String login(String email, String password) throws EmptySession, SignatureFailed, NonceMismatch,
-            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+    public String login(String email, String password)
+            throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -157,12 +161,14 @@ public class Password extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href="https://veridu.com/wiki/Password_Resource#First_Step">
      *      Recover/First Step</a>
      */
-    public boolean recoverFirstStep(String email, String setupUrl) throws EmptySession, SignatureFailed, NonceMismatch,
-            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+    public boolean recoverFirstStep(String email, String setupUrl)
+            throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -204,13 +210,14 @@ public class Password extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href="https://veridu.com/wiki/Password_Resource#Second_Step">
      *      Recover/Second Step</a>
      */
     public boolean recoverSecondStep(String recover_hash, String password)
             throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, UnsupportedEncodingException {
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

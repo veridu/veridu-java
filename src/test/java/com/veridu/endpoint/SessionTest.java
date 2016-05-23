@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Session;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -71,7 +70,7 @@ public class SessionTest {
 
     @Test
     public void testExpireReturnNull() throws SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, EmptySession {
+            InvalidResponse, APIError, RequestFailed, EmptySession, ParseException {
         Session session = setUp();
         expect(session.signedFetch(isA(String.class), isA(String.class))).andReturn(new JSONObject());
         assertTrue(session.expire());
@@ -79,7 +78,7 @@ public class SessionTest {
 
     @Test(expected = EmptySession.class)
     public void testExpireThrowsEmptySession() throws RequestFailed, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, EmptySession {
+            InvalidFormat, InvalidResponse, APIError, EmptySession, ParseException {
         Session session = setUp();
         session.storage.purgeSession();
         session.expire();
@@ -99,7 +98,7 @@ public class SessionTest {
 
     @Test(expected = EmptySession.class)
     public void testExtendThrowsEmptySession() throws RequestFailed, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, EmptySession {
+            InvalidFormat, InvalidResponse, APIError, EmptySession, ParseException {
         Session session = setUp();
         session.storage.purgeSession();
         session.extend();

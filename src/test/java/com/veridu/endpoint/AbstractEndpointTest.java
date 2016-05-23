@@ -270,7 +270,7 @@ public class AbstractEndpointTest {
 
     @Test(expected = SignatureFailed.class)
     public void testSignedFetchInvalidSignature() throws SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureException {
+            InvalidResponse, APIError, RequestFailed, SignatureException, ParseException {
         AbstractEndpoint endpoint = EasyMock.createMockBuilder(AbstractEndpoint.class).addMockedMethod("request")
                 .addMockedMethod("generateNonce").addMockedMethod("fetch", String.class, String.class, String.class)
                 .createMock();
@@ -302,7 +302,7 @@ public class AbstractEndpointTest {
 
     @Test
     public void testSignedFetchNullResponse() throws SignatureException, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, SignatureFailed, NonceMismatch {
+            APIError, RequestFailed, SignatureFailed, NonceMismatch, ParseException {
         AbstractEndpoint endpoint = EasyMock.createMockBuilder(AbstractEndpoint.class).addMockedMethod("request")
                 .addMockedMethod("generateNonce").addMockedMethod("fetch", String.class, String.class, String.class)
                 .createMock();

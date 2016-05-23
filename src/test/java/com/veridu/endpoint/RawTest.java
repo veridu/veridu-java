@@ -16,7 +16,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Raw;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -66,7 +65,7 @@ public class RawTest {
     @Test(expected = EmptySession.class)
     public void testRetrieveThrowsEmptySession()
             throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
-            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException {
+            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException, ParseException {
         Raw raw = setUp();
         replay(raw);
         raw.storage.purgeSession();
@@ -76,7 +75,7 @@ public class RawTest {
     @Test(expected = EmptyUsername.class)
     public void testRetrieveThrowsEmptyUsername()
             throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
-            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException {
+            SignatureFailed, NonceMismatch, InvalidUsername, UnsupportedEncodingException, ParseException {
         Raw raw = setUp();
         replay(raw);
         raw.storage.setUsername("");
@@ -86,7 +85,7 @@ public class RawTest {
     @Test(expected = InvalidUsername.class)
     public void testRetrieveThrowsInvalidUsername()
             throws EmptySession, InvalidUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError,
-            RequestFailed, SignatureFailed, NonceMismatch, EmptyUsername, UnsupportedEncodingException {
+            RequestFailed, SignatureFailed, NonceMismatch, EmptyUsername, UnsupportedEncodingException, ParseException {
         Raw raw = setUp();
         replay(raw);
         raw.retrieve(Raw.TYPE_CREDENTIAL, "@123#");

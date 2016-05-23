@@ -1,6 +1,7 @@
 package com.veridu.endpoint;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -380,6 +381,7 @@ public class User extends AbstractEndpoint {
      *             Exception
      * @throws InvalidUsername
      *             Exception
+     * @throws ParseException
      *
      *
      * @see <a href=
@@ -388,7 +390,7 @@ public class User extends AbstractEndpoint {
      *      session</a>
      */
     public boolean create(String username) throws RequestFailed, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, EmptySession, InvalidUsername {
+            InvalidFormat, InvalidResponse, APIError, EmptySession, InvalidUsername, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -655,13 +657,14 @@ public class User extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/User_Resource#How_to_rename_a_user">How to
      *      rename a user</a>
      */
     public boolean rename(String newUsername) throws EmptySession, EmptyUsername, SignatureFailed, NonceMismatch,
-            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, InvalidUsername {
+            EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, InvalidUsername, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -696,13 +699,14 @@ public class User extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/User_Resource#How_to_rename_a_user">How to
      *      rename a user</a>
      */
     public boolean rename(String newUsername, String username) throws EmptySession, InvalidUsername, SignatureFailed,
-            NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.SSO;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -51,7 +50,7 @@ public class SSOTest {
 
     @Test(expected = EmptySession.class)
     public void createOauth1ThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         SSO sso = setUp();
         replay(sso);
         sso.storage.purgeSession();
@@ -71,7 +70,7 @@ public class SSOTest {
 
     @Test(expected = EmptySession.class)
     public void createOauth2ThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         SSO sso = setUp();
         replay(sso);
         sso.storage.purgeSession();

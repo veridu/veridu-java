@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Password;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -62,8 +61,9 @@ public class PasswordTest {
     }
 
     @Test(expected = EmptySession.class)
-    public void testCreateThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException {
+    public void testCreateThrowsEmptySession()
+            throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException, ParseException {
         Password password = setUp();
         replay(password);
         password.storage.purgeSession();
@@ -83,8 +83,9 @@ public class PasswordTest {
     }
 
     @Test(expected = EmptySession.class)
-    public void testLoginThrowsEmptySession() throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException {
+    public void testLoginThrowsEmptySession()
+            throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException, ParseException {
         Password password = setUp();
         replay(password);
         password.storage.purgeSession();
@@ -106,7 +107,7 @@ public class PasswordTest {
     @Test(expected = EmptySession.class)
     public void testRecoverFirstStepThrowsEmptySession()
             throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException {
+            APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException, ParseException {
         Password password = setUp();
         replay(password);
         password.storage.purgeSession();
@@ -128,7 +129,7 @@ public class PasswordTest {
     @Test(expected = EmptySession.class)
     public void testRecoverSecondStepThrowsEmptySession()
             throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
-            APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException {
+            APIError, RequestFailed, UnavailableRegion, UnsupportedEncodingException, ParseException {
         Password password = setUp();
         replay(password);
         password.storage.purgeSession();

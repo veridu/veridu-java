@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Application;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -64,12 +63,34 @@ public class ApplicationTest {
     }
 
     @Test(expected = EmptySession.class)
-    public void testCreateThrowsEmptySession() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, UnsupportedEncodingException {
+    public void testCreateThrowsEmptySession()
+            throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
+            SignatureFailed, NonceMismatch, UnsupportedEncodingException, ParseException {
         Application application = setUp();
         replay(application);
         application.storage.purgeSession();
         application.create("provider");
+    }
+
+    @Test
+    public void testDetailsReturnsJson() throws ParseException, SignatureFailed, NonceMismatch, EmptyResponse,
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, EmptySession, EmptyUsername {
+        Application application = setUp();
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse("{\"list\":\"json\"}");
+        expect(application.signedFetch(isA(String.class), isA(String.class))).andReturn(json);
+        replay(application);
+        assertEquals(json, application.details(1));
+
+    }
+
+    @Test(expected = EmptySession.class)
+    public void testDetailsThrowsEmptySession() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
+            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, ParseException {
+        Application application = setUp();
+        replay(application);
+        application.storage.purgeSession();
+        application.details(1);
     }
 
     @Test
@@ -87,32 +108,11 @@ public class ApplicationTest {
 
     @Test(expected = EmptySession.class)
     public void testListAllThrowsEmptySession() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch {
+            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, ParseException {
         Application application = setUp();
         replay(application);
         application.storage.purgeSession();
         application.listAll();
-    }
-
-    @Test
-    public void testDetailsReturnsJson() throws ParseException, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, EmptySession, EmptyUsername {
-        Application application = setUp();
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse("{\"list\":\"json\"}");
-        expect(application.signedFetch(isA(String.class), isA(String.class))).andReturn(json);
-        replay(application);
-        assertEquals(json, application.details(1));
-
-    }
-
-    @Test(expected = EmptySession.class)
-    public void testDetailsThrowsEmptySession() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch {
-        Application application = setUp();
-        replay(application);
-        application.storage.purgeSession();
-        application.details(1);
     }
 
     @Test
@@ -128,8 +128,9 @@ public class ApplicationTest {
     }
 
     @Test(expected = EmptySession.class)
-    public void testSetStateThrowsEmptySession() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, UnsupportedEncodingException {
+    public void testSetStateThrowsEmptySession()
+            throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat, InvalidResponse, APIError, RequestFailed,
+            SignatureFailed, NonceMismatch, UnsupportedEncodingException, ParseException {
         Application application = setUp();
         replay(application);
         application.storage.purgeSession();

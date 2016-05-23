@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
@@ -57,13 +58,14 @@ public class Raw extends AbstractEndpoint {
      *             Exception
      * @throws RequestFailed
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Raw_Resource#How_to_retrieve_a_users_raw_profile_data">
      *      How to retrieve a users raw profile data</a>
      */
     public JSONObject retrieve() throws EmptySession, EmptyUsername, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed {
+            InvalidFormat, InvalidResponse, APIError, RequestFailed, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
@@ -106,6 +108,7 @@ public class Raw extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Raw_Resource#How_to_retrieve_a_users_raw_profile_data">
@@ -113,7 +116,7 @@ public class Raw extends AbstractEndpoint {
      */
     public JSONObject retrieve(String type)
             throws EmptySession, EmptyUsername, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, InvalidUsername, UnsupportedEncodingException {
+            InvalidResponse, APIError, RequestFailed, InvalidUsername, UnsupportedEncodingException, ParseException {
         if (this.storage.isUsernameEmpty())
             throw new EmptyUsername();
 
@@ -151,6 +154,7 @@ public class Raw extends AbstractEndpoint {
      *             Exception
      * @throws UnsupportedEncodingException
      *             Exception
+     * @throws ParseException
      *
      * @see <a href=
      *      "https://veridu.com/wiki/Raw_Resource#How_to_retrieve_a_users_raw_profile_data">
@@ -159,7 +163,7 @@ public class Raw extends AbstractEndpoint {
 
     public JSONObject retrieve(String type, String username)
             throws EmptySession, InvalidUsername, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException {
+            InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 

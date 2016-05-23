@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.veridu.endpoint.Clone;
 import com.veridu.exceptions.APIError;
 import com.veridu.exceptions.EmptyResponse;
 import com.veridu.exceptions.EmptySession;
@@ -37,7 +36,7 @@ public class CloneTest {
     String secret = "secret";
     String version = "version";
     Signature signature = EasyMock.createMockBuilder(Signature.class).addMockedMethod("signRequest").createMock();
-    
+
     @Test
     public void detailsReturnsJson() throws ParseException, EmptyResponse, InvalidFormat, InvalidResponse, APIError,
             RequestFailed, EmptySession, EmptyUsername, SignatureFailed, NonceMismatch, InvalidUsername {
@@ -51,7 +50,7 @@ public class CloneTest {
 
     @Test(expected = EmptyUsername.class)
     public void detailsThrowsEmptyUsername() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, InvalidUsername {
+            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, InvalidUsername, ParseException {
         Clone clone = setUp();
         clone.storage.setUsername("");
         replay(clone);
@@ -60,7 +59,7 @@ public class CloneTest {
 
     @Test(expected = EmptySession.class)
     public void detailsThrowsEmpySession() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, InvalidUsername {
+            InvalidResponse, APIError, RequestFailed, SignatureFailed, NonceMismatch, InvalidUsername, ParseException {
         Clone clone = setUp();
         clone.storage.purgeSession();
         replay(clone);
@@ -69,7 +68,7 @@ public class CloneTest {
 
     @Test(expected = InvalidUsername.class)
     public void detailsThrowsInvalidUsername() throws EmptySession, EmptyUsername, EmptyResponse, InvalidFormat,
-            InvalidResponse, APIError, RequestFailed, InvalidUsername, SignatureFailed, NonceMismatch {
+            InvalidResponse, APIError, RequestFailed, InvalidUsername, SignatureFailed, NonceMismatch, ParseException {
         Clone clone = setUp();
         replay(clone);
         clone.details("@123#");
