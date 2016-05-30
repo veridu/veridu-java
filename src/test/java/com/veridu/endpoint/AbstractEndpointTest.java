@@ -3,7 +3,6 @@ package com.veridu.endpoint;
 import static org.easymock.EasyMock.anyString;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.isA;
-import static org.easymock.EasyMock.mock;
 import static org.easymock.EasyMock.replay;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -142,16 +141,6 @@ public class AbstractEndpointTest {
         data.put("test", Arrays.toString("test".getBytes("")));
         WhiteboxImpl.invokeMethod(endpoint, "queryBuilder", data);
 
-    }
-
-    @Test(expected = RequestFailed.class)
-    public void testRequestFailed() throws RequestFailed, IOException {
-        AbstractEndpoint endpoint = EasyMock.createMockBuilder(AbstractEndpoint.class).createMock();
-        String resource = "http://api.veridu.com/test/user";
-        URL requestUrl = PowerMock.createMock(URL.class);
-        HttpURLConnection connection = mock(HttpURLConnection.class);
-        expect(requestUrl.openConnection()).andReturn(connection);
-        endpoint.request("GET", resource, "");
     }
 
     @Test

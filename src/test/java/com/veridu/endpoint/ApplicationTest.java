@@ -59,7 +59,7 @@ public class ApplicationTest {
         JSONObject json = (JSONObject) parser.parse("{\"appid\":\"2\"}");
         expect(application.signedFetch(isA(String.class), isA(String.class), isA(String.class))).andReturn(json);
         replay(application);
-        assertEquals(2, application.create("twitter"));
+        assertEquals(2, application.create("twitter", "token", "secret"));
     }
 
     @Test(expected = EmptySession.class)
@@ -69,7 +69,7 @@ public class ApplicationTest {
         Application application = setUp();
         replay(application);
         application.storage.purgeSession();
-        application.create("provider");
+        application.create("provider", "token", "secret");
     }
 
     @Test

@@ -1,9 +1,5 @@
 package com.veridu.signature;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.SignatureException;
@@ -11,8 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.veridu.Utils;
 
 /**
  * Class Signature
@@ -26,28 +23,6 @@ public class Signature {
         this.clientid = clientid;
         this.secret = secret;
         setVersion(version);
-    }
-
-    private JSONObject readDefaultConfigFile() throws ParseException {
-        InputStream is = this.getClass().getResourceAsStream("/config.json");
-        BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-        StringBuilder configString = new StringBuilder();
-        String line;
-        try {
-            line = bf.readLine();
-            while (line != null) {
-                configString.append(line);
-                line = bf.readLine();
-            }
-            bf.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse(configString.toString());
-
-        return json;
     }
 
     /**
@@ -77,7 +52,8 @@ public class Signature {
 
     public String signRequest(String method, String resource, String nonce) throws SignatureException, ParseException {
         try {
-            JSONObject config = this.readDefaultConfigFile();
+            Utils configReader = new Utils();
+            JSONObject config = configReader.readConfig("config.json");
             String base_url = config.get("BASEURL").toString();
             String url = base_url + this.version;
             if (resource.charAt(0) != '/')

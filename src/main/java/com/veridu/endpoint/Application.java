@@ -62,14 +62,15 @@ public class Application extends AbstractEndpoint {
      *      "https://veridu.com/wiki/Application_Resource#How_to_create_a_new_hosted_application">
      *      Create new hosted application </a>
      */
-    public int create(String provider) throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse,
-            InvalidFormat, InvalidResponse, APIError, RequestFailed, UnsupportedEncodingException, ParseException {
+    public int create(String provider, String key, String secret)
+            throws EmptySession, SignatureFailed, NonceMismatch, EmptyResponse, InvalidFormat, InvalidResponse,
+            APIError, RequestFailed, UnsupportedEncodingException, ParseException {
         if (this.storage.isSessionEmpty())
             throw new EmptySession();
 
         HashMap<String, String> data = new HashMap<>();
-        data.put("key", this.getKey());
-        data.put("secret", this.getSecret());
+        data.put("key", key);
+        data.put("secret", secret);
         data.put("provider", provider);
 
         JSONObject json = this.signedFetch("POST", "application/", data);

@@ -9,24 +9,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Test {
+public class Utils {
 
-    public static void main(String[] args) {
-
-        Test t = new Test();
-        JSONObject value;
-        try {
-            value = t.readDefaultConfigFile();
-            System.out.println(value.get("BASEURL"));
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-    private JSONObject readDefaultConfigFile() throws ParseException {
-        InputStream is = this.getClass().getResourceAsStream("/config.json");
+    public JSONObject readConfig(String source) throws ParseException {
+        InputStream is = this.getClass().getResourceAsStream("/" + source);
         BufferedReader bf = new BufferedReader(new InputStreamReader(is));
         StringBuilder configString = new StringBuilder();
         String line;
@@ -46,5 +32,4 @@ public class Test {
 
         return json;
     }
-
 }
