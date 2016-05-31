@@ -3,7 +3,13 @@
 Installation
 ------------
 
-You can download this project, or install this through [Maven](https://packagist.org/packages/veridu/veridu-php).
+Download this project or clone it into the same directory of your project:
+```
+├── Your directory
+│   ├── veridu-java
+│   ├── your project
+
+```
 
 On your `pom.xml` file, add :
   
@@ -26,7 +32,7 @@ A ```index.html``` file is going to be generated inside the directory: /target/s
 
 Examples
 --------
-Examples of basic usage can be found at samples [http://veridu.github.io/samples/java-1.0](http://veridu.github.io/samples/java-1.0)
+Examples of basic usage can be found at samples [https://github.com/veridu/samples/tree/master/java](https://github.com/veridu/samples/tree/master/java)
 
 Tests
 -----
