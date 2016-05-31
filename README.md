@@ -27,7 +27,7 @@ On your `pom.xml` file, add :
 Code documentation
 ------------------
 In the root directory run ```mvn site```.
-A ```index.html``` file is going to be generated inside the directory: /target/site. Open it on any web browser. 
+A ```index.html``` file is going to be generated inside the directory: ``` /target/site ```. Open it on any web browser. 
 
 
 Examples
