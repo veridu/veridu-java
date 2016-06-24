@@ -5,8 +5,6 @@ import java.net.URLEncoder;
 import java.security.SignatureException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import com.veridu.Utils;
@@ -52,9 +50,7 @@ public class Signature {
 
     public String signRequest(String method, String resource, String nonce) throws SignatureException, ParseException {
         try {
-            Utils configReader = new Utils();
-            JSONObject config = configReader.readConfig("config.json");
-            String base_url = config.get("BASEURL").toString();
+            String base_url = Utils.BASE_URL;
             String url = base_url + this.version;
             if (resource.charAt(0) != '/')
                 url = url.concat("/");
