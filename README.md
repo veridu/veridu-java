@@ -6,9 +6,7 @@ Download or clone this project.
 
 #### Settings
 
-Inside `src/main/resources` there is going to be a `config.json.dist` file. You need to rename it to config.json.
-
-Now run  `mvn install` in the root of `veridu-java` project that you just downloaded.
+Run `mvn install` in the root of `veridu-java` project that you just downloaded.
 
 After, there are two ways to setup the `veridu-java` SDK: 
 
