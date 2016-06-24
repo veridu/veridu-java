@@ -2,20 +2,24 @@
 
 Installation
 ------------
+Download or clone this project. 
 
-Download this project or clone it into the same directory of your project:
-```
-├── Your directory
-│   ├── veridu-java
-│   ├── your project
 
-```
+Settings
+--------
+Inside src/main/resources there is going to be a config.json.dist file. You need to rename it to config.json and set the configuration values with your own credentials. 
 
-On your `pom.xml` file, add :
-  
-```xml
+Now run  ````mvn install```` in the root of veridu-java project that you just downloaded.
+
+After, there are two ways to setup the veridu-java SDK: 
+
+###### Using maven
+
+If you are using ```maven```, add the veridu-java SDK dependency inside the `pom.xml` file of your own project:
+
+````xml
 <dependencies>
-        <!-- add other dependencies over here! -->
+        <!-- add other dependencies of your own project over here! -->
         <dependency>
             <groupId>com.veridu</groupId>
             <artifactId>veridu-java</artifactId>
@@ -23,6 +27,12 @@ On your `pom.xml` file, add :
         </dependency>
     </dependencies>
 ```
+
+###### Using as a jar library
+
+Inside the src/main/target there is going to be a jar file. In your own project, just add this jar file as a dependency. 
+
+
 
 Code documentation
 ------------------
