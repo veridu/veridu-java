@@ -12,24 +12,21 @@ After, there are two ways to setup the `veridu-java` SDK:
 
 ##### Using maven
 
-If you are using `maven`, add the veridu-java SDK dependency inside the `pom.xml` file of your own project:
+If you are using `maven`, add the `veridu-java` SDK dependency inside the `pom.xml` file inside the `<dependencies>` tag of your own project, after intalling the `veridu-java` project with `mvn install`:
 
 ````xml
-<dependencies>
-        <!-- add other dependencies of your own project over here! -->
-        <dependency>
-            <groupId>com.veridu</groupId>
-            <artifactId>veridu-java</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
+<dependency>
+    <groupId>com.veridu</groupId>
+    <artifactId>veridu-java</artifactId>
+    <version>1.0</version>
+</dependency>
 ```
 
-##### Using as a jar library
+##### Using as a standalone jar library (if you are <strong>NOT</strong> using maven in your own project)
 
-Inside the ```src/target``` there is going to be a jar file. 
-If you named the ```veridu-java``` SDK as "veridu-java", the jar file is going to be just like that: ```veridu-java-1.0-jar-with-dependencies.jar```
-If you are <strong>NOT</strong> using maven in your project, just add this jar file to the build path of your project. 
+After building the `veridu-java` project, a standalone jar file with all dependencies will be generated at ```veridu-java/target/veridu-java-1.0-jar-with-dependencies.jar```.
+
+If you are <strong>NOT</strong> using maven in own your project, just add this jar file to your build path. 
 
 
 Code documentation
