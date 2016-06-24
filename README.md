@@ -6,15 +6,15 @@ Download or clone this project.
 
 #### Settings
 
-Inside src/main/resources there is going to be a config.json.dist file. You need to rename it to config.json and set the configuration values with your own credentials. 
+Inside `src/main/resources` there is going to be a `config.json.dist` file. You need to rename it to config.json.
 
-Now run  ````mvn install```` in the root of veridu-java project that you just downloaded.
+Now run  `mvn install` in the root of `veridu-java` project that you just downloaded.
 
-After, there are two ways to setup the veridu-java SDK: 
+After, there are two ways to setup the `veridu-java` SDK: 
 
 ##### Using maven
 
-If you are using ```maven```, add the veridu-java SDK dependency inside the `pom.xml` file of your own project:
+If you are using `maven`, add the veridu-java SDK dependency inside the `pom.xml` file of your own project:
 
 ````xml
 <dependencies>
@@ -29,8 +29,9 @@ If you are using ```maven```, add the veridu-java SDK dependency inside the `pom
 
 ##### Using as a jar library
 
-Inside the src/main/target there is going to be a jar file. In your own project, just add this jar file as a dependency. 
-
+Inside the ```src/target``` there is going to be a jar file. 
+If you named the ```veridu-java``` SDK as "veridu-java", the jar file is going to be just like that: ```veridu-java-1.0-jar-with-dependencies.jar```
+If you are <strong>NOT</strong> using maven in your project, just add this jar file to the build path of your project. 
 
 
 Code documentation
