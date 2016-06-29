@@ -4,6 +4,16 @@ Installation
 ------------
 Download or clone this project. 
 
+Code documentation
+------------------
+
+You can find the javadocs online at [https://www.veridu.com/veridu-java/apidocs/]().
+
+Alternatively, you can generate the javadocs yourself:
+
+In the root directory run ```mvn site```.
+A ```index.html``` file is going to be generated inside the directory: ``` /target/site ```. Open it on any web browser. 
+
 #### Settings
 
 Run `mvn install` in the root of `veridu-java` project that you just downloaded.
@@ -27,12 +37,6 @@ If you are using `maven`, add the `veridu-java` SDK dependency inside the `pom.x
 After building the `veridu-java` project, a standalone jar file with all dependencies will be generated at ```veridu-java/target/veridu-java-1.0-jar-with-dependencies.jar```.
 
 If you are <strong>NOT</strong> using maven in own your project, just add this jar file to your build path. 
-
-
-Code documentation
-------------------
-In the root directory run ```mvn site```.
-A ```index.html``` file is going to be generated inside the directory: ``` /target/site ```. Open it on any web browser. 
 
 
 Examples
