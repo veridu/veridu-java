@@ -11,6 +11,8 @@ import org.json.simple.parser.ParseException;
 
 public class Utils {
 
+	public static final String BASE_URL = "http://api.veridu.com";
+	
     public JSONObject readConfig(String source) throws ParseException {
         InputStream is = this.getClass().getResourceAsStream("/" + source);
         BufferedReader bf = new BufferedReader(new InputStreamReader(is));
