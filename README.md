@@ -7,7 +7,7 @@ Download or clone this project.
 Code documentation
 ------------------
 
-You can find the javadocs online at [https://www.veridu.com/veridu-java/apidocs/]().
+You can find the javadocs online at [https://www.veridu.com/veridu-java/apidocs/](https://www.veridu.com/veridu-java/apidocs/).
 
 Alternatively, you can generate the javadocs yourself:
 
